@@ -173,6 +173,28 @@ main{
     width: 14rem;
 }
 
+/* miss-keep */
+
+.miss-keep .pinned{
+    height: 20vh;
+}
+
+.miss-keep .unPinned{
+    height: 20vh;
+}
+
+/* .miss-keep br{
+    
+} */
+
+.miss-keep .note-prev{
+    margin: auto;
+    height: 100%;
+    width: 80%;
+    background-color: rgb(0, 128, 0);
+    border-radius: 15px;
+}
+
 /* footer */
 
 footer{
@@ -194,6 +216,12 @@ footer h1{
 /************** layout helpers ************/
 .flex{
     display: flex;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
 }
 
 .center-center{
