@@ -1,3 +1,251 @@
-body {
-    background-color: lightblue;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* colors */
+.colors{
+    color: #0fad5e;
+    color: #818282;
+    color: #b3b4b4;
+    color: #7cc897;
+}
+
+/* fonts */
+
+/* basic */
+html{
+    font-size: 14px;
+    font-family: cursive;
+    color: #383838;
+    color: rgb(255, 102, 0)
+}
+
+h1,h2,h3{
+    font-family: fantasy;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(255, 102, 0)
+}
+
+button{
+    border: none;
+    border-radius: 2px;
+    background-color: #dadada;
+    color: #383838;
+    cursor: pointer;
+}
+
+button:hover{
+    transition: 0.1s;
+    background-color: rgb(204, 186, 27);
+}
+
+/********** components ***********/
+
+/* header */
+
+header{ 
+    height: 118px;
+    box-shadow: 2px 0px 4px 0px black;
+    
+}
+
+header h1{
+    margin-left: 20px;
+}
+
+nav ul{
+    width: 60%;
+    height: 15vh;
+    margin-right: 10px;
+}
+
+nav ul li{
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav li a{
+    color: #383838;
+    font-size: 2em;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* main */
+
+main{
+    height: 75vh;    
+}
+
+/* home */
+
+.home{
+    height: 100%;
+    text-align: center;
+}
+
+.home .container{
+    width: 50%;
+}
+
+.home h1{
+    font-size: 7rem;
+}
+
+.home h3{
+    font-size: 3.5rem;
+}
+
+.home p{
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.home button{
+    font-size: 2rem;
+    width: 220px;
+    height: 50px;
+}
+
+/* about */
+
+.about{
+    height: 100%;
+    justify-content: space-around;
+}
+
+.about h1{
+    font-size: 40px;
+}
+
+.about p{
+    color: rgb(204, 186, 27);
+    font-size: 17px;
+}
+
+.about section{
+    width: 25vw;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.about .mid{
+    justify-content: center;
+    align-items: center;
+}
+
+.about .mid h1{
+    font-size: 100px;
+}
+.about .img-container{
+    border: solid 30px;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.about .img1{
+    background-image: url(../img/1.jpg);
+}
+
+.about .img2{
+    background-image: url(../img/2.jpg);
+}
+
+/* gallery */
+
+.book-prev{
+    width: 14rem;
+}
+
+.book-prev img{
+    width: 14rem;
+}
+
+/* footer */
+
+footer{
+    height: 10vh;
+    background-color: #F5F5F5;
+}
+
+footer h1{
+    margin-right: 5px;
+}
+
+/************ helpers *************/
+
+.clean-list li,.clean-list a{
+    text-decoration: none;
+    list-style: none;
+}
+
+/************** layout helpers ************/
+.flex{
+    display: flex;
+}
+
+.center-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.center-x{
+    justify-content: center;
+}
+
+.center-y{
+    align-items: center;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+
+/*********** color helpers ************/
+.dark-sec-bgc{
+    background-color: #383838;
+}
+
+.dark-prime-bgc{
+    background-color: rgb(230, 209, 29);
+}
+
+.light-sec-bgc{
+    background-color: #dadada;
+}
+
+.light-prime-bgc{
+    background-color: #7cc897;
+}
+
+.dark-sec-txt{
+    color: #aaaaaa;
+}
+
+.dark-prime-txt{
+    color: rgb(204, 186, 27);
+}
+
+.light-sec-txt{
+    color: #dadada;
+}
+
+.light-prime-txt{
+    color: #7cc897;
 }
