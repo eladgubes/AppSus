@@ -4,6 +4,7 @@ const { Route, Switch } = ReactRouterDOM
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import MissKeep from './pages/MissKeep.jsx'
+import Mail from './pages/Mail.jsx'
 import Gallery from './pages/Gallery.jsx'
 import NavLink from './cmps/NavLink.jsx'
 import BookDetails from './pages/BookDetails.jsx'
@@ -22,6 +23,7 @@ export class App extends React.Component {
                         <Route exact component={About} path="/about" />
                         <Route exact component={Gallery} path="/gallery" />
                         <Route exact component={MissKeep} path="/missKeep" />
+                        <Route exact component={Mail} path="/mail" />
                         <Route exact component={BookDetails} path="/gallery/:bookId" />
                     </Switch>
                 </main>

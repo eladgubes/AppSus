@@ -9,6 +9,7 @@ export default function NavLink (){
                 <li><Link to='/about'>About</Link></li>
                 <li><Link to='/gallery'>Gallery</Link></li>
                 <li><Link to='/missKeep'>MissKeep</Link></li>
+                <li><Link to='/mail'>Mail</Link></li>
             </ul>
         </nav>
     )
