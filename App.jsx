@@ -5,7 +5,7 @@ export class App extends React.Component {
         return (
             <div>
                 <header>
-                    <h1>Lets Play</h1>
+                    <h1>Lets Play!</h1>
                 </header>
                 <main>
                     <Home />
