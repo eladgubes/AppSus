@@ -1,19 +1,21 @@
 export default {
     getNotes,
-    createNote
+    createTxt
 }
+
+var gNotes = []
 
 var gNotes = [
     {
-        type: "NoteText",
+        type: "text",
         isPinned: true,
-        info: {
+        content: {
             txt: "Fullstack Me Baby!"
         }
     },
     {
-        type: "NoteImg",
-        info: {
+        type: "img",
+        content: {
             url: "http://some-img/me",
             title: "Me playing Mi"
         },
@@ -22,8 +24,8 @@ var gNotes = [
         }
     },
     {
-        type: "NoteTodos",
-        info: {
+        type: "todos",
+        content: {
             label: "How was it:",
             todos: [
                 { txt: "Do that", doneAt: null },
@@ -34,21 +36,24 @@ var gNotes = [
 ];
 
 function getNotes(isPinned) {
-    if(isPinned){
+    if (isPinned) {
         return gNotes.filter(note => (note.isPinned));
-    }else{
+    } else {
         return gNotes.filter(note => !note.isPinned);
     }
 }
 
-function createNote(type, isPinned, info, style, todos) {
+function createTxt(type, isPinned, txt, backgroundColor) {
     let note = {
         type,
         isPinned,
-        info,
-    };
-    if(todos) note.todos = todos
-    (!style) ? note.style = 'green' : note.style = style
+        content: {
+            txt
+        },
+        style: {
 
-    gNotes.push(note)
+        }
+    };
+    (!backgroundColor) ? note.style.backgroundColor = 'green' : note.style.backgroundColor = backgroundColor
+    gNotes.push(note);
 }
