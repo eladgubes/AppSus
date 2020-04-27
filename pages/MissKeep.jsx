@@ -1,14 +1,14 @@
-import missKeepService from '../services/miss-keep-service.js'
+import noteService from '../services/noteService.js'
 import NoteSet from "../cmps/NoteSet.jsx"
 import NotePrev from "../cmps/NotePrev.jsx"
 
 export default class MissKeep extends React.Component {
 
     state = {
-        pinnedNotes: null,
-        unPinnedNotes: null,
+        notes: null,
         type: null,
-        isPinned: false
+        isPinned: false,
+        url: null
     }
 
     componentDidMount() {
@@ -16,20 +16,34 @@ export default class MissKeep extends React.Component {
     }
 
     notesToDisplay = () => {
-        const pinnedNotes = missKeepService.getNotes(true);
-        const unPinnedNotes = missKeepService.getNotes(false);
-        this.setState({ pinnedNotes, unPinnedNotes })
+        noteService.getNotes()
+            .then(res => this.setState({ notes: res }, () => { this.resetState() }))
+            .catch(console.log('Err!: notesToDisplay didn\'t got gNotes'))
+    }
+
+    resetState = () => {
+        this.state = {
+            notes: null,
+            type: null,
+            isPinned: false,
+            url: null
+        }
     }
 
     onSetNote = (ev, filed) => {
         ev.preventDefault();
-        if (!this.state.type || this.state.type === 'text' ) this.setState({ type: 'text' }, () => {
-            missKeepService.createTxt('text',this.state.isPinned,'im a new note','green')
+        if (!this.state.type || this.state.type === 'text') this.setState({ type: 'text' }, () => {
+            noteService.createTxt('text', this.state.isPinned, 'im a new note', 'green')
             this.notesToDisplay()
         })
-        else {
-            console.log('this.state.type', this.state.type);
-        }
+        else if (this.state.type === 'img') this.setState({ type: 'img' }, () => {
+            noteService.createImg('img', this.state.isPinned, this.state.url)
+            this.notesToDisplay()
+        })
+        else if (this.state.type === 'todos') this.setState({ type: 'todos' }, () => {
+            noteService.createTodo('todos', this.state.isPinned, this.state.url)
+            this.notesToDisplay()
+        })
     }
 
     onSetPin = () => {
@@ -42,18 +56,23 @@ export default class MissKeep extends React.Component {
     }
 
     render() {
-        const pinnedNotes = this.state.pinnedNotes;
-        const unPinnedNotes = this.state.unPinnedNotes;
+        const notes = this.state.notes
         return (
             <section className="miss-keep">
-                <NoteSet onSetNoteType={this.onSetNoteType} onSetNote={this.onSetNote}
-                    onSetNote={this.onSetNote} onSetPin={this.onSetPin} />
+                {/* AddNote */}
+                <NoteSet onSetNoteType={this.onSetNoteType} onSetNote={this.onSetNote} onSetPin={this.onSetPin} />
                 <div className="pinned grid">
-                    {pinnedNotes && pinnedNotes.map((note, idx) => <NotePrev key={idx} note={note} />)}
+                    {/* check if the note is pinned in the map */}
+                    {notes && notes.map((note, idx) => {
+                        if (note.isPinned) return <NotePrev key={idx} note={note} />
+                    })}
                 </div>
                 <br />
                 <div className="unPinned grid">
-                    {unPinnedNotes && unPinnedNotes.map((note, idx) => <NotePrev key={idx} note={note} />)}
+                    {/* check if the note is not pinned in the map */}
+                    {notes && notes.map((note, idx) => {
+                        if (!note.isPinned) return <NotePrev key={idx} note={note} />
+                    })}
                 </div>
             </section>
         )

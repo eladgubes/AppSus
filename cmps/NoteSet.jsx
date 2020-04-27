@@ -1,4 +1,4 @@
-
+import NoteTools from "../cmps/NoteTools.jsx"
 export default class NoteSet extends React.Component  {
     
         state = {
@@ -22,10 +22,7 @@ export default class NoteSet extends React.Component  {
                     <input type="text" placeholder="Note" onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
                     <button onClick={() => this.props.onSetNote(event,this.state.filed)}>Create</button>
                 </form>
-                <button onClick={() => this.props.onSetPin(true)}>Pin</button>
-                <button onClick={() => this.props.onSetNoteType('text')}>text</button>
-                <button onClick={() => this.props.onSetNoteType('img')}>img</button>
-                <button onClick={() => this.props.onSetNoteType('todos')}>todos</button>
+                <NoteTools onSetPin={this.props.onSetPin} onSetNoteType={this.props.onSetNoteType}/>
             </div>
         )
     }
