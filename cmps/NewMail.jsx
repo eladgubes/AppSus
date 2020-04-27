@@ -8,6 +8,11 @@ export default class NewMail extends React.Component {
         }
     }
 
+    componentDidMount = () => {
+        const mailContact = this.props.mailContact
+        this.setState({ mailContact })
+    }
+
     handleInput = ({ target }) => {
         const field = target.name;
         const value = target.value;

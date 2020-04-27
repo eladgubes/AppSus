@@ -9,7 +9,13 @@ export default class Mail extends React.Component {
 
     state = {
         mails: null,
-        isNewMail: false
+        isNewMail: false,
+        mailContact: {
+            from: '',
+            subject: '',
+            body: ''
+        }
+
     }
 
     componentDidMount = () => {
@@ -42,9 +48,27 @@ export default class Mail extends React.Component {
         this.loadMails()
     }
 
-    noRemoveMail =(MailId)=>{
+    noRemoveMail = (MailId) => {
         mailService.removeMail(MailId)
         this.loadMails()
+    }
+
+    onSortByText = (key) => {
+        mailService.sortByText(key)
+        this.loadMails()
+    }
+
+    onSortByNumber = (key) => {
+        mailService.sortByNumber(key)
+        this.loadMails()
+    }
+
+    onReplyMail = (key, mailContact) => {
+        const from = (key === 'answer') ? mailContact.from : ''
+        const subject = (key === 'answer') ? 'Re:' + mailContact.subject : 'Fw:' + mailContact.subject
+        const body = mailContact.body
+        this.setState({ mailContact: { from, subject, body } })
+        this.setState({isNewMail: true})
     }
 
 
@@ -52,7 +76,7 @@ export default class Mail extends React.Component {
         return (
             <section>
                 {this.state.isNewMail && <NewMail onToggleNewMail={this.onOpenNewMail}
-                onSendMail={this.onSendMail} />}
+                    onSendMail={this.onSendMail} mailContact={this.state.mailContact} />}
                 <MailFilter onSetFilter={this.onSetFilter} />
                 <div className="flex">
                     <div className="mail-control">
@@ -67,15 +91,15 @@ export default class Mail extends React.Component {
                     <table>
                         <thead>
                             <tr>
-                                <th>from</th>
-                                <th colSpan="2">contact</th>
-                                <th>time</th>
+                                <th onClick={() => { this.onSortByText('from') }}>from</th>
+                                <th colSpan="2" onClick={() => { this.onSortByText('subject') }}>contact</th>
+                                <th onClick={() => { this.onSortByNumber('sentAt') }}>time</th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.mails && this.state.mails.map((mail, idx) =>
                                 <MailList key={idx} mail={mail} unReadToggle={this.unReadToggle}
-                                noRemoveMail={this.noRemoveMail} />)}
+                                    noRemoveMail={this.noRemoveMail} onReplyMail={this.onReplyMail} />)}
                         </tbody>
                     </table>
                 </div>

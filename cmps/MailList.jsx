@@ -5,15 +5,29 @@
 export default class MailList extends React.Component {
     state = {
         isExpanded: false,
-        dateDescription: ''
+        dateDescription: '',
+        mailContact: {
+            from: '',
+            subject: '',
+            body: ''
+        }
     }
 
     componentDidMount() {
         this.getDateDescription()
+        this.setContact()
+
     }
 
     getDateDescription = () => {
         const dateDescription = this.props.mail.sentAt
+    }
+
+    setContact = () => {
+        const from = this.props.mail.from
+        const subject = this.props.mail.subject
+        const body = this.props.mail.body
+        this.setState({ mailContact: { from, subject, body } })
     }
 
 
@@ -36,8 +50,8 @@ export default class MailList extends React.Component {
                         <h3>subject: {mail.subject}</h3>
                         <p>body: {mail.body}</p>
                         <button onClick={() => this.props.noRemoveMail(mail.id)}>delete</button>
-                        <button>froward</button>
-                        <button>answer</button>
+                        <button onClick={()=> this.props.onReplyMail('froward',this.state.mailContact)}>froward</button>
+                        <button onClick={()=> this.props.onReplyMail('answer',this.state.mailContact)}>answer</button>
 
                     </td>
                 </tr>

@@ -10,7 +10,9 @@ export default {
     getMails,
     filterMail,
     sendMail,
-    removeMail
+    removeMail,
+    sortByText,
+    sortByNumber
 }
 
 function getMails() {
@@ -40,5 +42,21 @@ function sendMail(mailContact) {
 
 function removeMail(mailId) {
     const mailIdx = gMails.findIndex(mail => mail.id === mailId)
-    gMails.splice(mailIdx,1)
+    gMails.splice(mailIdx, 1)
+}
+
+function sortByText(key) {
+    gMails.sort((mailA, mailB) => {
+        if (mailA[key].toUpperCase() > mailB[key].toUpperCase()) return 1
+        if (mailA[key].toUpperCase() < mailB[key].toUpperCase()) return -1
+        else return 0
+    })
+
+}
+
+function sortByNumber(key) {
+    gMails.sort((mailA, mailB) => {
+        return mailA[key] - mailB[key]
+    })
+
 }
