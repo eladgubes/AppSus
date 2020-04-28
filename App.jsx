@@ -3,7 +3,7 @@ const { Route, Switch } = ReactRouterDOM
 
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
-import MissKeep from './pages/MissKeep.jsx'
+import MissKeep from './pages/NotePages/MissKeep.jsx'
 import Mail from './pages/Mail.jsx'
 import Gallery from './pages/Gallery.jsx'
 import NavLink from './cmps/NavLink.jsx'
