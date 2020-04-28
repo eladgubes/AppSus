@@ -1,6 +1,7 @@
-import MailList from "../cmps/MailList.jsx"
-import MailFilter from "../cmps/MailFilter.jsx"
-import NewMail from "../cmps/NewMail.jsx"
+import MailList from "../cmps/Mail/MailList.jsx"
+import MailFilter from "../cmps/Mail/MailFilter.jsx"
+import NewMail from "../cmps/Mail/NewMail.jsx"
+import MailControl from "../cmps/Mail/MailControl.jsx"
 import mailService from "../services/mailService.js"
 
 
@@ -22,13 +23,13 @@ export default class Mail extends React.Component {
 
     componentDidMount = () => {
         this.loadMails()
-        this.ReadCount()
+
     }
 
     loadMails = () => {
         mailService.getMailsForDisplay(this.state.mailBox)
             .then(mails => this.setState({ mails }))
-
+        this.ReadCount()
     }
 
     onSetFilter = (filter) => {
@@ -36,11 +37,11 @@ export default class Mail extends React.Component {
             .then(mails => this.setState({ mails }))
 
     }
-    onUnReadToggle = (mailId) => {
-        // ev.stopPropagation()
-        // ev.preventDefault()
+    onUnReadToggle = (mailId, ev) => {
+        ev.stopPropagation()
         mailService.unReadToggle(mailId)
-        this.loadMails()
+            .then(mail => this.loadMails())
+        // this.loadMails()
     }
 
     onToggleNewMail = () => {
@@ -53,7 +54,7 @@ export default class Mail extends React.Component {
         this.loadMails()
     }
 
-    noRemoveMail = (mailId) => {
+    onRemoveMail = (mailId) => {
         mailService.removeMail(mailId)
         this.loadMails()
     }
@@ -89,7 +90,8 @@ export default class Mail extends React.Component {
         this.setState({ mailBox }, () => this.loadMails())
     }
 
-    onStarToggle = (mailId) => {
+    onStarToggle = (mailId, ev) => {
+        ev.stopPropagation()
         mailService.starToggle(mailId);
         this.loadMails()
     }
@@ -103,15 +105,9 @@ export default class Mail extends React.Component {
                     <MailFilter onSetFilter={this.onSetFilter} />
                 </div>
                 <div className="mail-container flex">
-                    <div className="mail-control flex ">
-                        <button onClick={this.onToggleNewMail}>New Mail</button>
-                        <ul className="mail-nav clean-list">
-                            <li onClick={() => this.onChangeMailBox('inbox')}>inbox</li>
-                            <li onClick={() => this.onChangeMailBox('sent')}>sent</li>
-                            <li onClick={() => this.onChangeMailBox('starred')}>starred</li>
-                        </ul>
-                        <h3>{this.state.readCount}% unread</h3>
-                    </div>
+
+                    <MailControl onToggleNewMail={this.onToggleNewMail} onChangeMailBox={this.onChangeMailBox}
+                        readCount={this.state.readCount} />
                     <div className="mail-box">
                         <table className="mails-table">
                             <thead>
@@ -123,8 +119,8 @@ export default class Mail extends React.Component {
                             </thead>
                             <tbody>
                                 {this.state.mails && this.state.mails.map((mail, idx) =>
-                                    <MailList key={idx} mail={mail} onUnReadToggle={this.onUnReadToggle}
-                                        noRemoveMail={this.noRemoveMail} onReplyMail={this.onReplyMail}
+                                    <MailList key={mail.id} mail={mail} onUnReadToggle={this.onUnReadToggle}
+                                        onRemoveMail={this.onRemoveMail} onReplyMail={this.onReplyMail}
                                         showDateStr={this.showDateStr} onStarToggle={this.onStarToggle} />)}
                             </tbody>
                         </table>

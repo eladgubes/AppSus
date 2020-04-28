@@ -98,8 +98,8 @@ function getDateStr(description) {
 
 function unReadToggle(mailId) {
     let mail = gInboxMails.find(mail => mail.id === mailId)
-    mail.isRead = false
-    console.log(mail);
+    mail.isRead = !mail.isRead
+    return Promise.resolve(mail)
 }
 
 function starToggle(mailId){
