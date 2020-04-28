@@ -9,7 +9,8 @@ export default {
     setTodo,
     removeNote,
     filterNotes,
-    togglePin
+    togglePin,
+    setBackgroundColor
 }
 
 
@@ -173,17 +174,13 @@ function _getNoteByKey(key, value) {
     return note
 }
 
-function getFromNote(key, id){
-    
-}
-
-function getFromInNote(firstsKey, secondKey, id){
-
+function setBackgroundColor(id, value){
+    let note = _getNoteByKey('id',id)
+    note.style.backgroundColor = value
 }
 
 function filterNotes(noteSearchWord) {
     var filterNote = gNotes.filter(note => {
-        console.log(noteSearchWord,note);
         if (note.content.title.toUpperCase().includes(noteSearchWord.toUpperCase())) return note
     })
     return filterNote
