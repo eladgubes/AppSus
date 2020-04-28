@@ -28,8 +28,8 @@ export default class MailFilter extends React.Component {
                     <input type="text" onChange={this.handleInput} value={mailSearchWord} name="mailSearchWord" />
                     <select name="" id="" onChange={this.handleInput} name="mailCategory">
                         <option value="all">all</option>
-                        <option value="Mark">Mark</option>
-                        <option value="UnMark">UnMark</option>
+                        <option value="Read">Read</option>
+                        <option value="UnRead">UnRead</option>
                     </select>
                 </form>
             </div>

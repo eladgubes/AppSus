@@ -1,30 +1,53 @@
 
 var gNextId = 103
 
-var gMails = [
-    { id: 101, from: 'elad', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594, isImportant: false },
-    { id: 102, from: 'omrit', subject: 'hello', body: 'im here', isRead: false, sentAt: 1551133930594, isImportant: false }
+var gMailsToDisplay = []
+
+var gInboxMails = [
+    { id: 101, from: 'elad', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594, isStarred: true },
+    { id: 102, from: 'omrit', subject: 'hello', body: 'im here', isRead: true, sentAt: 1587898990594, isStarred: false }
 ];
 
+var gSentMails = []
+
 export default {
-    getMails,
+    getMailsForDisplay,
     filterMail,
     sendMail,
     removeMail,
     sortByText,
-    sortByNumber
+    sortByNumber,
+    getDateStr,
+    unReadToggle,
+    getReadCount,
+    starToggle
 }
 
-function getMails() {
-    return gMails
+function getMailsForDisplay(mailBox) {
+    if (mailBox === 'inbox') gMailsToDisplay = gInboxMails
+    else if (mailBox === 'sent') gMailsToDisplay = gSentMails
+    else if (mailBox === 'starred') gMailsToDisplay = _getStaredMails()
+    return Promise.resolve(gMailsToDisplay)
 }
+
 
 function filterMail(filter) {
-    var filterMails = gMails.filter(mail => {
-        if (mail.from.toUpperCase().includes(filter.mailSearchWord.toUpperCase())) return mail
-        if (mail.subject.toUpperCase().includes(filter.mailSearchWord.toUpperCase())) return mail
+    var checkRead = 'all'
+    if (filter.mailCategory === 'Read') checkRead = true
+    else if (filter.mailCategory === 'UnRead') checkRead = false
+
+    var filterMails = gMailsToDisplay.filter(mail => {
+        if (checkRead === 'all') {
+            if (mail.from.toUpperCase().includes(filter.mailSearchWord.toUpperCase())) return mail
+            if (mail.subject.toUpperCase().includes(filter.mailSearchWord.toUpperCase())) return mail
+            return
+        }
+        if (mail.from.toUpperCase().includes(filter.mailSearchWord.toUpperCase())
+            && checkRead === mail.isRead) return mail
+        if (mail.subject.toUpperCase().includes(filter.mailSearchWord.toUpperCase())
+            && checkRead === mail.isRead) return mail
     })
-    return filterMails
+    return Promise.resolve(filterMails)
 }
 
 function sendMail(mailContact) {
@@ -37,16 +60,17 @@ function sendMail(mailContact) {
         isRead: false,
         sentAt: time
     }
-    gMails.unshift(mail)
+    gInboxMails.unshift(mail)
+    gSentMails.unshift(mail)
 }
 
 function removeMail(mailId) {
-    const mailIdx = gMails.findIndex(mail => mail.id === mailId)
-    gMails.splice(mailIdx, 1)
+    const mailIdx = gInboxMails.findIndex(mail => mail.id === mailId)
+    gMailsToDisplay.splice(mailIdx, 1)
 }
 
 function sortByText(key) {
-    gMails.sort((mailA, mailB) => {
+    gMailsToDisplay.sort((mailA, mailB) => {
         if (mailA[key].toUpperCase() > mailB[key].toUpperCase()) return 1
         if (mailA[key].toUpperCase() < mailB[key].toUpperCase()) return -1
         else return 0
@@ -55,8 +79,42 @@ function sortByText(key) {
 }
 
 function sortByNumber(key) {
-    gMails.sort((mailA, mailB) => {
-        return mailA[key] - mailB[key]
+    gMailsToDisplay.sort((mailA, mailB) => {
+        if (mailA[key] - mailB[key] < 1) return 1
+        return -1
     })
 
+}
+
+function getDateStr(description) {
+    const timeNow = Date.now()
+    let timeStr;
+    const timeDiff = (timeNow - description) / 1000 / 60 / 60 / 24
+    if (timeDiff < 1) timeStr = ` ${parseInt(timeDiff * 24)} hours ago`
+    else if (timeDiff <= 7) timeStr = ` ${parseInt(timeDiff)} days ago`
+    else if (timeDiff > 7) timeStr = ` ${parseInt(timeDiff / 7)} weeks ago`
+    return Promise.resolve(timeStr)
+}
+
+function unReadToggle(mailId) {
+    let mail = gInboxMails.find(mail => mail.id === mailId)
+    mail.isRead = false
+    console.log(mail);
+}
+
+function starToggle(mailId){
+    let mail = gMailsToDisplay.find(mail => mail.id === mailId)
+    mail.isStarred = !mail.isStarred
+}
+
+function getReadCount() {
+    var readCount = 0;
+    gInboxMails.forEach(mail => { if (mail.isRead) readCount++ })
+    return Promise.resolve(readCount / gInboxMails.length * 100)
+}
+
+function _getStaredMails(){
+    var staredMails = gInboxMails.filter(mail=>{if (mail.isStarred) return mail})
+    staredMails.concat(gSentMails.filter(mail=>{if (mail.isStarred) return mail}))
+    return staredMails;
 }

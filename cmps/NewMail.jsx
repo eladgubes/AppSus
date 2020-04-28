@@ -23,14 +23,14 @@ export default class NewMail extends React.Component {
         ev.preventDefault()
         this.props.onSendMail(this.state.mailContact)
     }
-
+    
     render() {
         return (
             <div className="reviewModal">
                 <button onClick={this.props.onToggleNewMail}>X</button>
                 <h2>Enter Your mail</h2>
                 <form action="">
-                    <label htmlFor="">from</label>
+                    <label htmlFor="">to</label>
                     <input type="text" onChange={this.handleInput} value={this.state.mailContact.from} name="from" />
                     <label htmlFor="">subject</label>
                     <input type="text" onChange={this.handleInput} value={this.state.mailContact.subject} name="subject" />
