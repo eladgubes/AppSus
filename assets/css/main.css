@@ -9,6 +9,13 @@
     color: #818282;
     color: #b3b4b4;
     color: #7cc897;
+
+/* 
+
+
+
+
+ */
 }
 
 /* fonts */
@@ -193,6 +200,14 @@ main{
     width: 80%;
     background-color: rgb(0, 128, 0);
     border-radius: 15px;
+}
+
+.note-txt{
+    flex-direction: column;
+}
+
+.note-txt img {
+    max-width: 200px;
 }
 
 
