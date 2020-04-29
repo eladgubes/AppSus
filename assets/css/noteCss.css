@@ -1,0 +1,37 @@
+/* miss-keep */
+
+.miss-keep .pinned{
+    height: 20vh;
+}
+
+.miss-keep .unPinned{
+    height: 20vh;
+}
+
+/* .miss-keep br{
+    
+} */
+
+.miss-keep .note-prev{
+    margin: auto;
+    height: 100%;
+    width: 80%;
+    background-color: rgb(0, 128, 0);
+    border-radius: 15px;
+}
+
+.note-txt{
+    flex-direction: column;
+}
+
+.note-txt img {
+    max-width: 200px;
+}
+
+.completed-todo{
+    text-decoration: line-through;
+}
+
+.uncompleted-todo{
+    text-decoration: none;
+}

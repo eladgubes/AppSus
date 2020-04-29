@@ -27,11 +27,10 @@ export default class NoteTxt extends React.Component {
             <div className="note-txt flex center-center" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
                 <div>
                     <h1>{this.props.note.content.title}</h1>
-                    {this.props.note.content.todos.map((todo,idx) => {
+                    {this.props.note.content.todos.map((todo) => {
+                        let todoState = (todo.isComplete) ? 'completed-todo' : 'uncompleted-todo'
                         return (
-                            <div key={idx} className={`todo todo${idx}`}>
-                                <p >{todo.txt}</p>
-                            </div>
+                                <p onClick={()=>{this.props.onToggleTodoState(todo.doneAt)}} key={todo.doneAt} className={`todo ${todoState}`}>{todo.txt}</p>
                         )
                     })}
                 </div>

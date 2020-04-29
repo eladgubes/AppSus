@@ -39,7 +39,7 @@ export default class NoteTxt extends React.Component {
                     <input type="text" placeholder="Title" onChange={this.handleInput} value={this.state.filed.inputTitle} name="inputTitle" />
                     <input type="text" placeholder="Note" onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
                 </div>
-                <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onSetPin={this.props.onSetPin} onSetNoteType={this.props.onSetNoteType} />
+                <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
             </div>
         )
     }

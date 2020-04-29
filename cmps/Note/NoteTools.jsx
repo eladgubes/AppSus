@@ -11,6 +11,7 @@ export default class NoteTools extends React.Component {
     render() {
         return (
             <div className="note-tools">
+                {/* <button onClick={() => this.props.onEditPin(this.props.note.id)}>Pin</button> */}
                 <button onClick={() => this.props.onEditPin(this.props.note.id)}>Pin</button>
                 <button onClick={() => this.props.onRemoveNote(this.props.note.id)}>X</button>
                 <select onChange={() => this.props.setNoteColor(event, this.props.note.id)} name="" id="">
