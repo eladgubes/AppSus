@@ -11,7 +11,8 @@ export default class MissKeep extends React.Component {
         isPinned: false,
         url: '',
         color: null,
-        title: ''
+        title: '',
+        field: null
     }
 
     componentDidMount() {
@@ -30,20 +31,21 @@ export default class MissKeep extends React.Component {
             .catch(console.log('Err!: notesToDisplay didn\'t got gNotes'))
     }
 
-    onSetNote = (ev) => {
+    onSetNote = (ev, field) => {
         ev.preventDefault();
-        if (!this.state.type || this.state.type === 'text') this.setState({ type: 'text' }, () => {
-            noteService.createTxt('text', this.state.isPinned, 'im a new note', 'im a new note', this.state.color)
+        if (!this.state.type || this.state.type === 'text') this.setState({ type: 'text',field }, () => {
+            noteService.createTxt('text', this.state.isPinned, this.state.field.inputNote, this.state.field.inputTitle, this.state.color)
             this.notesToDisplay()
         })
-        else if (this.state.type === 'img') this.setState({ type: 'img' }, () => {
-            noteService.createImg('img', this.state.isPinned, this.state.url, this.state.title, this.state.color)
+        else if (this.state.type === 'img') this.setState({ type: 'img',field }, () => {
+            noteService.createImg('img', this.state.isPinned, this.state.field.inputNote, this.state.field.inputTitle, this.state.color)
             this.notesToDisplay()
         })
-        else if (this.state.type === 'todos') this.setState({ type: 'todos' }, () => {
-            noteService.createTodo('todos', this.state.isPinned, this.state.title, ['nothing on mind'], this.state.color)
+        else if (this.state.type === 'todos') this.setState({ type: 'todos',field }, () => {
+            noteService.createTodo('todos', this.state.isPinned, this.state.field.inputNote, this.state.field.inputTitle, this.state.color)
             this.notesToDisplay()
         })
+        this.notesToDisplay();
     }
 
     onSetPin = () => {
@@ -52,7 +54,6 @@ export default class MissKeep extends React.Component {
         this.setState({ isPinned })
     }
 
-    // new function
     onEditPin = (id) => {
         noteService.togglePin(id)
         this.notesToDisplay()
@@ -82,9 +83,20 @@ export default class MissKeep extends React.Component {
         this.notesToDisplay()
     }
 
+    onSetUrl = (id, inputNote, inputTitle) => {
+        noteService.editNoteInContent(id, 'url', inputNote)
+        noteService.editNoteInContent(id, 'title', inputTitle)
+        this.notesToDisplay()
+    }
+
     setNoteColor = (ev, id) => {
         const color = ev.target.value;
         noteService.setBackgroundColor(id, color)
+        this.notesToDisplay()
+    }
+
+    onToggleTodoState = (timeStamp) => {
+        noteService.toggleTodo(timeStamp)
         this.notesToDisplay()
     }
 
@@ -100,7 +112,8 @@ export default class MissKeep extends React.Component {
                     {notes && notes.map((note) => {
                         if (note.isPinned) return <NotePrev key={note.id} note={note} onNoteEdit={this.onNoteEdit}
                             setNoteColor={this.setNoteColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}
-                            onSetNote={this.onSetNote} onEditPin={this.onEditPin} onRemoveNote={this.onRemoveNote} />
+                            onSetNote={this.onSetNote} onEditPin={this.onEditPin} onRemoveNote={this.onRemoveNote} 
+                            onToggleTodoState={this.onToggleTodoState} onSetUrl={this.onSetUrl}/>
 
                     })}
                 </div>
@@ -110,7 +123,8 @@ export default class MissKeep extends React.Component {
                     {notes && notes.map((note) => {
                         if (!note.isPinned) return <NotePrev key={note.id} note={note} onNoteEdit={this.onNoteEdit}
                             setNoteColor={this.setNoteColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}
-                            onSetNote={this.onSetNote} onEditPin={this.onEditPin} onRemoveNote={this.onRemoveNote} />
+                            onSetNote={this.onSetNote} onEditPin={this.onEditPin} onRemoveNote={this.onRemoveNote} 
+                            onToggleTodoState={this.onToggleTodoState} onSetUrl={this.onSetUrl}/>
                     })}
                 </div>
             </section>

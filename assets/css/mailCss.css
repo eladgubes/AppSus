@@ -1,0 +1,43 @@
+.unread{
+    font-weight: bold;
+}
+
+.mail-section{
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+}
+.mail-filter{
+    margin-bottom: 15px;
+}
+
+.mails-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.mails-table tr{
+    border-bottom: black 1px solid;
+    width: 100%;
+}
+.mails-table th{
+    cursor: pointer;
+}
+
+.mail-container{
+    margin: auto;
+    width: 95%;
+    background-color: white;
+    height: 100%;
+    
+}
+
+.mail-control{
+    width: 20%;
+    flex-direction: column;
+    border-right: black 1px solid;
+}
+
+.mail-nav li{
+    cursor: pointer;
+
+}

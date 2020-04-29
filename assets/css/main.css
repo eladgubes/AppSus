@@ -1,3 +1,6 @@
+@import './noteCss.css';
+@import './mailCss.css';
+
 *{
     margin: 0;
     padding: 0;
@@ -10,12 +13,6 @@
     color: #b3b4b4;
     color: #7cc897;
 
-/* 
-
-
-
-
- */
 }
 
 /* fonts */
@@ -180,128 +177,6 @@ main{
     width: 14rem;
 }
 
-/* miss-keep */
-
-.miss-keep .pinned{
-    height: 20vh;
-}
-
-.miss-keep .unPinned{
-    height: 20vh;
-}
-
-/* .miss-keep br{
-    
-} */
-
-.miss-keep .note-prev{
-    margin: auto;
-    height: 100%;
-    width: 80%;
-    background-color: rgb(0, 128, 0);
-    border-radius: 15px;
-}
-
-.note-txt{
-    flex-direction: column;
-}
-
-.note-txt img {
-    max-width: 200px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* footer */
 
 footer{
@@ -385,46 +260,49 @@ footer h1{
     color: #7cc897;
 }
 
-.unread{
-    font-weight: bold;
-}
 
-.mail-section{
-    width: 100%;
-    flex-direction: column;
-    height: 100%;
-}
-.mail-filter{
-    margin-bottom: 15px;
-}
 
-.mails-table{
-    border-collapse: collapse;
-    width: 100%;
-}
-.mails-table tr{
-    border-bottom: black 1px solid;
-    width: 100%;
-}
-.mails-table th{
-    cursor: pointer;
-}
 
-.mail-container{
-    margin: auto;
-    width: 95%;
-    background-color: white;
-    height: 100%;
-    
-}
 
-.mail-control{
-    width: 20%;
-    flex-direction: column;
-    border-right: black 1px solid;
-}
 
-.mail-nav li{
-    cursor: pointer;
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

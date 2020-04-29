@@ -10,7 +10,8 @@ export default {
     removeNote,
     filterNotes,
     togglePin,
-    setBackgroundColor
+    setBackgroundColor,
+    toggleTodo
 }
 
 
@@ -61,8 +62,8 @@ var gNotes = [
             title: 'i am todo title',
             // label: "How was it:",
             todos: [
-                { txt: "Do that", doneAt: null },
-                { txt: "Do this", doneAt: 187111111 }
+                { txt: "Do that", isComplete: false, doneAt: 187112541 },
+                { txt: "Do this", isComplete: false, doneAt: 187111111 }
             ]
         },
         style: {
@@ -86,7 +87,7 @@ function createTxt(type, isPinned, text, title, backgroundColor) {
             text
         },
         style: {
-            
+
         }
     };
     (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
@@ -137,14 +138,14 @@ function createTodo(type, isPinned, title, todos, backgroundColor) {
             todos
         },
         style: {
-            
+
         }
     };
     (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
 
-function togglePin(id){
+function togglePin(id) {
     let noteToEdit = _getNoteByKey('id', id)
     noteToEdit.isPinned = !noteToEdit.isPinned
 }
@@ -159,9 +160,9 @@ function editNoteInContent(id, key, value) {
     noteToEdit.content[key] = value
 }
 
-function setTodo(id, todo){
+function setTodo(id, todo) {
     let noteToEdit = _getNoteByKey('id', id);
-    noteToEdit.content.todos.push({txt: todo})
+    noteToEdit.content.todos.push({ txt: todo, isComplete: false, doneAt: Date.now})
 }
 
 function removeNote(id) {
@@ -174,8 +175,8 @@ function _getNoteByKey(key, value) {
     return note
 }
 
-function setBackgroundColor(id, value){
-    let note = _getNoteByKey('id',id)
+function setBackgroundColor(id, value) {
+    let note = _getNoteByKey('id', id)
     note.style.backgroundColor = value
 }
 
@@ -184,4 +185,15 @@ function filterNotes(noteSearchWord) {
         if (note.content.title.toUpperCase().includes(noteSearchWord.toUpperCase())) return note
     })
     return filterNote
+}
+
+function toggleTodo(timeStamp) {
+    gNotes.find(note => {
+        if(note.type !== 'todos') return
+        note.content.todos.find(todo => {
+            if (todo.doneAt === timeStamp) {
+                todo.isComplete = !todo.isComplete
+            }
+        })
+    })
 }

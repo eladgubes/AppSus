@@ -2,18 +2,24 @@ import NoteTools from './NoteTools.jsx'
 export default class NoteImg extends React.Component {
 
     state = {
-        id: null,
-        color: null,
-        url: null,
-        input: null
+        filed: {
+            inputTitle: '',
+            inputNote: ''
+        }
     }
 
     componentDidMount() {
-        const color = this.props.note.style.backgroundColor;
-        const id = this.props.note.id
-        const input = this.props.note.content.title;
-        const url = this.props.note.content.url;
-        this.setState({ id, color, url, input })
+        const inputTitle = this.props.note.content.title
+        let inputNote = this.props.note.content.txt
+        if (!inputNote) inputNote = ''
+        let filed = {inputTitle,inputNote}
+        this.setState({ filed })
+    }
+
+    handleInput = ({ target }) => {
+        const field = target.name;
+        const value = target.value;
+        this.setState(prevState => ({ filed: { ...prevState.filed, [field]: value } }))
     }
 
     render() {
@@ -21,6 +27,9 @@ export default class NoteImg extends React.Component {
             <div className="note-txt flex center-center" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
                 <h1>{this.props.note.content.title}</h1>
                 <img src={this.props.note.content.url} alt="" />
+                <input type="text" placeholder="Title" onChange={this.handleInput} value={this.state.filed.inputTitle} name="inputTitle" />
+                <input type="text" placeholder="url" onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
+                <button onClick={() => this.props.onSetUrl(this.props.note.id, this.state.filed.inputNote, this.state.filed.inputTitle)}>OK</button>
                 <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onRemoveNote={this.props.onRemoveNote}
                     onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
             </div>

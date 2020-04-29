@@ -14,11 +14,11 @@ export default function NotePrev(props) {
             case 'img':
                 return <NoteImg note={props.note} onRemoveNote={props.onRemoveNote} onSetTodo={props.onSetTodo}
                     setNoteColor={props.setNoteColor} onSetNoteType={props.onSetNoteType} onSetNote={props.onSetNote} 
-                    onEditPin={props.onEditPin} onNoteEdit={props.onNoteEdit} />
+                    onEditPin={props.onEditPin} onNoteEdit={props.onNoteEdit} onSetUrl={props.onSetUrl}/>
             case 'todos':
                 return <NoteTodos note={props.note} onRemoveNote={props.onRemoveNote} onSetTodo={props.onSetTodo}
                     setNoteColor={props.setNoteColor} onSetNoteType={props.onSetNoteType} onSetNote={props.onSetNote} 
-                    onEditPin={props.onEditPin} onNoteEdit={props.onNoteEdit} />
+                    onEditPin={props.onEditPin} onNoteEdit={props.onNoteEdit} onToggleTodoState={props.onToggleTodoState}/>
             case 'video':
                 return <NoteVideo note={props.note} onRemoveNote={props.onRemoveNote} onSetTodo={props.onSetTodo}
                     setNoteColor={props.setNoteColor} onSetNoteType={props.onSetNoteType} onSetNote={props.onSetNote} 
