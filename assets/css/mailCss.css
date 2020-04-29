@@ -6,9 +6,18 @@
     width: 100%;
     flex-direction: column;
     height: 100%;
+    margin: auto;
 }
 .mail-filter{
     margin-bottom: 15px;
+    width: 60%;
+}
+.mail-filter input,.mail-filter select{
+    font-size: 20px;
+}
+
+.mail-search{
+    width: 100%;
 }
 
 .mails-table{
@@ -19,6 +28,12 @@
     border-bottom: black 1px solid;
     width: 100%;
 }
+.mails-table tr:hover{
+    background-color: yellowgreen;
+    cursor: pointer;
+   
+}
+
 .mails-table th{
     cursor: pointer;
 }

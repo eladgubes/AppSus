@@ -1,11 +1,12 @@
 
-var gNextId = 103
+var gNextId = 104
 
 var gMailsToDisplay = []
 
 var gInboxMails = [
-    { id: 101,to:'yossi', from: 'elad', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594, isStarred: true },
-    { id: 102,to:'yoni', from: 'omrit', subject: 'hello', body: 'im here', isRead: true, sentAt: 1587898990594, isStarred: false }
+    { id: 101,to:'yossi', from: 'elad', subject: 'Wassap?', body: ['Pick up!','jdjdd'], isRead: false, sentAt: 1551133930594, isStarred: true },
+    { id: 102,to:'yoni', from: 'omrit', subject: 'hello', body: ['im here','sada'], isRead: true, sentAt: 1587898990594, isStarred: false },
+    { id: 103,to:'ofek', from: 'omrit', subject: 'hello', body: 'sada', isRead: true, sentAt: 1587898990594, isStarred: false }
 ];
 
 var gSentMails = []
@@ -58,7 +59,7 @@ function sendMail(mailContact) {
         to:mailContact.to,
         from: mailContact.from,
         subject: mailContact.subject,
-        body: mailContact.body,
+        body: mailContact.body.split('\n'),
         isRead: false,
         sentAt: time
     }

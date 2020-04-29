@@ -1,3 +1,4 @@
+import MailBody from "./MailBody.jsx";
 
 
 export default function MailPrev(props) {
@@ -6,14 +7,20 @@ export default function MailPrev(props) {
 
         <td colSpan="5">
             <h2>to: {props.mail.to}</h2>
-            <h2>from: {props.mail.from}</h2>
-            <h3>subject: {props.mail.subject}</h3>
-            <p>body: {props.mail.body}</p>
-            <button onClick={() => props.onRemoveMail(props.mail.id)}>delete</button>
-            <button onClick={() => props.onReplyMail('froward', props.mailContact)}>froward</button>
-            <button onClick={() => props.onReplyMail('answer', props.mailContact)}>answer</button>
-            <button onClick={() => props.onSaveAsNote(props.mail)}>save as note</button>
-        </td>
+            <p>from: {props.mail.from}</p>
+            <p>subject: {props.mail.subject}</p>
+            <p>body:</p>
+            {(typeof props.mail.body != 'string') ? props.mail.body.map(sentence => <MailBody sentence={sentence} key={sentence} />)      
+             : <p>{props.mail.body}</p>}
+
+            {/* {props.mail.body.map(sentence => <MailBody sentence={sentence} key={sentence} />)} */}
+
+            {/* <p>body: {props.mail.body}</p> */ }
+                < button onClick = {() => props.onRemoveMail(props.mail.id)}>delete</button>
+        <button onClick={() => props.onReplyMail('froward', props.mailContact)}>froward</button>
+        <button onClick={() => props.onReplyMail('answer', props.mailContact)}>answer</button>
+        <button onClick={() => props.onSaveAsNote(props.mail)}>save as note</button>
+        </td >
     )
 
 }

@@ -4,7 +4,6 @@ import MailPrev from "./MailPrev.jsx"
 
 export default class MailList extends React.Component {
     state = {
-        read: '',
         isSentBox: false,
         isExpanded: false,
         dateDescription: '',
@@ -19,13 +18,15 @@ export default class MailList extends React.Component {
         this.checkMailBox()
         this.getDateDescription()
         this.setContact()
+        console.log(this.state.mail);
+        
     }
 
     checkMailBox = () => {
         const mailBox = this.props.mailBox
         if (this.props.mailBox === 'sent')
             this.setState({ isSentBox: true })
-        console.log(mailBox);
+       
 
     }
 
@@ -41,6 +42,7 @@ export default class MailList extends React.Component {
         const subject = this.props.mail.subject
         const body = this.props.mail.body
         this.setState({ mailContact: { from, subject, body } })
+        console.log(from, subject, body );
     }
 
     expandRow = (ev) => {
