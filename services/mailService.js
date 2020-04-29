@@ -4,8 +4,8 @@ var gNextId = 103
 var gMailsToDisplay = []
 
 var gInboxMails = [
-    { id: 101, from: 'elad', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594, isStarred: true },
-    { id: 102, from: 'omrit', subject: 'hello', body: 'im here', isRead: true, sentAt: 1587898990594, isStarred: false }
+    { id: 101,to:'yossi', from: 'elad', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594, isStarred: true },
+    { id: 102,to:'yoni', from: 'omrit', subject: 'hello', body: 'im here', isRead: true, sentAt: 1587898990594, isStarred: false }
 ];
 
 var gSentMails = []
@@ -20,7 +20,8 @@ export default {
     getDateStr,
     unReadToggle,
     getReadCount,
-    starToggle
+    starToggle,
+    readMail
 }
 
 function getMailsForDisplay(mailBox) {
@@ -54,6 +55,7 @@ function sendMail(mailContact) {
     const time = Date.now()
     var mail = {
         id: gNextId++,
+        to:mailContact.to,
         from: mailContact.from,
         subject: mailContact.subject,
         body: mailContact.body,
@@ -62,7 +64,13 @@ function sendMail(mailContact) {
     }
     gInboxMails.unshift(mail)
     gSentMails.unshift(mail)
+    // _saveSentMails(mail)
 }
+
+// function _saveSentMails(mail) {
+//     mail.isRead = true
+    
+// }
 
 function removeMail(mailId) {
     const mailIdx = gInboxMails.findIndex(mail => mail.id === mailId)
@@ -96,13 +104,18 @@ function getDateStr(description) {
     return Promise.resolve(timeStr)
 }
 
+function readMail(mailId) {
+    let mail = gInboxMails.find(mail => mail.id === mailId)
+    mail.isRead = true
+}
+
 function unReadToggle(mailId) {
     let mail = gInboxMails.find(mail => mail.id === mailId)
     mail.isRead = !mail.isRead
     return Promise.resolve(mail)
 }
 
-function starToggle(mailId){
+function starToggle(mailId) {
     let mail = gMailsToDisplay.find(mail => mail.id === mailId)
     mail.isStarred = !mail.isStarred
 }
@@ -110,11 +123,11 @@ function starToggle(mailId){
 function getReadCount() {
     var readCount = 0;
     gInboxMails.forEach(mail => { if (mail.isRead) readCount++ })
-    return Promise.resolve(readCount / gInboxMails.length * 100)
+    return Promise.resolve(parseInt(readCount / gInboxMails.length * 100))
 }
 
-function _getStaredMails(){
-    var staredMails = gInboxMails.filter(mail=>{if (mail.isStarred) return mail})
-    staredMails.concat(gSentMails.filter(mail=>{if (mail.isStarred) return mail}))
+function _getStaredMails() {
+    var staredMails = gInboxMails.filter(mail => { if (mail.isStarred) return mail })
+    staredMails.concat(gSentMails.filter(mail => { if (mail.isStarred) return mail }))
     return staredMails;
 }

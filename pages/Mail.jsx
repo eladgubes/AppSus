@@ -41,7 +41,11 @@ export default class Mail extends React.Component {
         ev.stopPropagation()
         mailService.unReadToggle(mailId)
             .then(mail => this.loadMails())
-        // this.loadMails()
+    }
+
+    onReadMail = (mailId) => {
+        mailService.readMail(mailId)
+        this.loadMails
     }
 
     onToggleNewMail = () => {
@@ -88,12 +92,23 @@ export default class Mail extends React.Component {
 
     onChangeMailBox = (mailBox) => {
         this.setState({ mailBox }, () => this.loadMails())
+        // this.setState({ mailBox })
+        // this.loadMails()
+        console.log(this.state.mailBox);
+
     }
 
     onStarToggle = (mailId, ev) => {
         ev.stopPropagation()
         mailService.starToggle(mailId);
         this.loadMails()
+    }
+
+    onSaveAsNote = (mail) => {
+        console.log(mail);
+        var mailtoNoteStr = `http://127.0.0.1:5501/index.html?from=elad&subject=dd&body=dcddcdc#/missKeep?title=${mail.subject}&text=${mail.body}`
+        console.log(mailtoNoteStr);
+
     }
 
     render() {
@@ -112,6 +127,7 @@ export default class Mail extends React.Component {
                         <table className="mails-table">
                             <thead>
                                 <tr>
+                                    <th onClick={() => { this.onSortByText('to') }}>to</th>
                                     <th onClick={() => { this.onSortByText('from') }}>from</th>
                                     <th colSpan="2" onClick={() => { this.onSortByText('subject') }}>contact</th>
                                     <th onClick={() => { this.onSortByNumber('sentAt') }}>time</th>
@@ -121,7 +137,9 @@ export default class Mail extends React.Component {
                                 {this.state.mails && this.state.mails.map((mail, idx) =>
                                     <MailList key={mail.id} mail={mail} onUnReadToggle={this.onUnReadToggle}
                                         onRemoveMail={this.onRemoveMail} onReplyMail={this.onReplyMail}
-                                        showDateStr={this.showDateStr} onStarToggle={this.onStarToggle} />)}
+                                        showDateStr={this.showDateStr} onStarToggle={this.onStarToggle}
+                                        onSaveAsNote={this.onSaveAsNote} onReadMail={this.onReadMail}
+                                        mailBox={this.state.mailBox} />)}
                             </tbody>
                         </table>
                     </div>

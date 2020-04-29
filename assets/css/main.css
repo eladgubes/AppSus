@@ -428,3 +428,47 @@ footer h1{
     cursor: pointer;
 
 }
+
+.search-mail img{
+    width: 20px;
+    background-color: white;
+    border: none;
+}
+
+.new-mail{
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background-color: white;
+    flex-direction: column;
+    padding: 2%;
+    border: 1px black solid;
+}
+
+.new-mail input{
+    width: 80%;
+    border: none;
+}
+.new-mail-input{
+    height: 10%;
+    flex-direction: column;
+    border-bottom: 1px black solid;
+}
+.new-mail-input-body{
+    height: 60%;
+}
+
+.new-mail-input-body{
+    flex-direction: column;
+}
+
+.new-mail-input-body input{
+    height: 100%;
+    column-count: auto;
+}
+.new-mail-btn{
+   width: 20%;
+}
+.new-mail textarea:focus, input:focus{
+    outline: none;
+}

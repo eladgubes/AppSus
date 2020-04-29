@@ -24,7 +24,7 @@ export default class MailFilter extends React.Component {
         return (
             <div className="mail-search flex">
                 <form action="">
-                    <button onClick={() => { this.onSubmit(event)}}>Submit</button>
+                    <button onClick={() => { this.onSubmit(event)}}className="search-mail"><img src="/assets/icons/search.png" alt=""/></button>
                     <input type="text" onChange={this.handleInput} value={mailSearchWord} name="mailSearchWord" />
                     <select name="" id="" onChange={this.handleInput} name="mailCategory">
                         <option value="all">all</option>

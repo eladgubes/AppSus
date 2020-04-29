@@ -2,6 +2,7 @@ export default class NewMail extends React.Component {
 
     state = {
         mailContact: {
+            to: '',
             from: '',
             subject: '',
             body: ''
@@ -23,22 +24,37 @@ export default class NewMail extends React.Component {
         ev.preventDefault()
         this.props.onSendMail(this.state.mailContact)
     }
-    
+
     render() {
         return (
-            <div className="reviewModal">
-                <button onClick={this.props.onToggleNewMail}>X</button>
-                <h2>Enter Your mail</h2>
+            <div className="new-mail flex">
+                <div className="new-mail-head flex space-between">
+                    <h2>Enter Your mail</h2>
+                    <div className="new-mail-btn flex space-between">
+                        <button onClick={() => { this.onSendMailForm(event) }}>send</button>
+                        <button onClick={this.props.onToggleNewMail}>X</button>
+                    </div>
+                </div>
                 <form action="">
-                    <label htmlFor="">to</label>
-                    <input type="text" onChange={this.handleInput} value={this.state.mailContact.from} name="from" />
-                    <label htmlFor="">subject</label>
-                    <input type="text" onChange={this.handleInput} value={this.state.mailContact.subject} name="subject" />
-                    <label htmlFor="">body</label>
-                    <input type="text" onChange={this.handleInput} value={this.state.mailContact.body} name="body" />
-                    <button onClick={() => { this.onSendMailForm(event) }}>send</button>
+                    <div className="new-mail-input flex">
+                        <label htmlFor="">to:</label>
+                        <input type="text" onChange={this.handleInput} value={this.state.mailContact.to} name="to" />
+                    </div>
+                    <div className="new-mail-input flex">
+                        <label htmlFor="">from:</label>
+                        <input type="text" onChange={this.handleInput} value={this.state.mailContact.from} name="from" />
+                    </div>
+                    <div className="new-mail-input flex">
+                        <label htmlFor="">subject:</label>
+                        <input type="text" onChange={this.handleInput} value={this.state.mailContact.subject} name="subject" />
+                    </div>
+                    <div className="new-mail-input-body flex">
+                    <label htmlFor="">body:</label>
+                    {/* <input type="text"  onChange={this.handleInput} value={this.state.mailContact.body} name="body" /> */}
+                    <textarea name="" id="" cols="5" rows="15" onChange={this.handleInput} value={this.state.mailContact.body} name="body"></textarea>
+                    </div>
                 </form>
-            </div>
+            </div >
         )
     }
 }

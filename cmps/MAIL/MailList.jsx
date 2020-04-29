@@ -5,6 +5,7 @@ import MailPrev from "./MailPrev.jsx"
 export default class MailList extends React.Component {
     state = {
         read: '',
+        isSentBox: false,
         isExpanded: false,
         dateDescription: '',
         mailContact: {
@@ -15,17 +16,19 @@ export default class MailList extends React.Component {
     }
 
     componentDidMount() {
+        this.checkMailBox()
         this.getDateDescription()
         this.setContact()
-        this.checkRead()
+    }
+
+    checkMailBox = () => {
+        const mailBox = this.props.mailBox
+        if (this.props.mailBox === 'sent')
+            this.setState({ isSentBox: true })
+        console.log(mailBox);
 
     }
 
-    checkRead = () => {
-        if (!this.props.mail.isRead) this.setState({ read: 'unread' })
-        else if (this.props.mail.isRead) this.setState({ read: '' })
-
-    }
 
     getDateDescription = () => {
         let dateDescription = this.props.mail.sentAt
@@ -41,7 +44,8 @@ export default class MailList extends React.Component {
     }
 
     expandRow = (ev) => {
-        // ev.stopPropagation()
+        console.log(ev);
+
         ev.preventDefault()
         const isExpanded = !this.state.isExpanded
         this.setState({ isExpanded })
@@ -50,20 +54,21 @@ export default class MailList extends React.Component {
 
     render() {
         const { mail } = this.props
-        const readClass = (mail.isRead) ? '' : 'unread'
+        const readClass = (mail.isRead && !this.state.isSentBox) ? '' : 'unread'
         return (
             <React.Fragment>
-                <tr onClick={() => { this.expandRow(event) }} className={`${readClass}`} >
+                <tr onClick={() => { this.expandRow(event), this.props.onReadMail(mail.id) }} className={`${readClass}`} >
+                    <td>{mail.to}</td>
                     <td>{mail.from}</td>
                     <td>{mail.subject}</td>
                     <td>{mail.body}</td>
                     <td>{this.state.dateDescription}</td>
-                    <td><button onClick={(event) => this.props.onUnReadToggle(mail.id, event)}>read/unread</button></td>
+                    {!this.state.isSentBox && <td><button onClick={(event) => this.props.onUnReadToggle(mail.id, event)}>read/unread</button></td>}
                     <td><button onClick={(event) => this.props.onStarToggle(mail.id, event)}>star</button></td>
                 </tr>
                 <tr hidden={!this.state.isExpanded}>
                     <MailPrev mail={mail} onRemoveMail={this.props.onRemoveMail} mailContact={this.state.mailContact}
-                   onReplyMail= {this.props.onReplyMail} />
+                        onReplyMail={this.props.onReplyMail} onSaveAsNote={this.props.onSaveAsNote} />
                 </tr>
             </React.Fragment>
         )
