@@ -1,3 +1,4 @@
+const {Link} = ReactRouterDOM
 import NoteTools from './NoteTools.jsx'
 export default class NoteTxt extends React.Component {
 
@@ -14,7 +15,12 @@ export default class NoteTxt extends React.Component {
     componentDidMount() {
         const color = this.props.note.style.backgroundColor;
         const id = this.props.note.id
-        this.setState({ color, id })
+        const inputTitle = this.props.note.content.title
+        const inputNote = this.props.note.content.txt
+        const filed = {inputTitle , inputNote}
+        console.log(inputNote,inputTitle);
+        
+        this.setState({ color, id, filed })
     }
 
     handleInput = ({ target }) => {
@@ -51,6 +57,7 @@ export default class NoteTxt extends React.Component {
                 </div>
                 <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
                 <button onClick={this.onOpenInput}>Edit</button>
+                <Link to={`/mail?title=${this.state.filed.inputTitle}&text=${this.state.filed.inputNote}`}>Send as mail</Link>
             </div>
         )
     }

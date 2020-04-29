@@ -9,6 +9,7 @@ import mailService from "../services/mailService.js"
 export default class Mail extends React.Component {
 
     state = {
+        isMailToNote: false,
         mailBox: 'inbox',
         readCount: null,
         mails: null,
@@ -24,6 +25,26 @@ export default class Mail extends React.Component {
     componentDidMount = () => {
         this.loadMails()
 
+    }
+
+    componentDidUpdate(prevProps){
+        this.createNewMailFromNote(prevProps)
+    }
+
+    createNewMailFromNote = (prevProps) => {
+        if(this.state.isMailToNote) return
+        if(prevProps.location.search === '' || !prevProps.location.search || prevProps.location.search === ' ')return
+        this.setState({isMailToNote: true})
+        const link = prevProps.location.search.split('=')
+        let title = link[1].split('&')
+        const text = link[2]
+        title = title[0]
+        console.log(text,title);
+        const subject = title
+        const body = text
+        this.setState({ mailContact: { from:'', subject, body } }, ()=> {
+            this.setState({isNewMail: true})
+        })
     }
 
     loadMails = () => {

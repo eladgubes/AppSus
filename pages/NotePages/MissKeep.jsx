@@ -17,35 +17,24 @@ export default class MissKeep extends React.Component {
         field: null
     }
 
-    componentDidUpdate(prevProps){
-        
-        console.log('prevProps',prevProps);
-        // const i = 'afsad=elad&kvkhvkv0=gubes'
-        // const link = `http://127.0.0.1:5501/index.html?from=elad&subject=dd&body=dcddcdc#/missKeep?title=or&text=elad`
-        this.createNewNoteFromMail(prevProps)
-        // this.notesToDisplay();
-    }
-    
     componentDidMount() {
         this.notesToDisplay();
-
     }
     
+    componentDidUpdate(prevProps){
+        this.createNewNoteFromMail(prevProps)
+    }
+
     createNewNoteFromMail = (prevProps) => {
         if(this.state.isMailToNote) return
         if(prevProps.location.search === '' || !prevProps.location.search || prevProps.location.search === ' ')return
         this.setState({isMailToNote: true})
-        // const t = link.split('=')
         const t = prevProps.location.search.split('=')
         console.log('i',t);
         let title = t[1].split('&')
         const text = t[2]
         title = title[0]
-
         noteService.createTxt('text',true,text,title)
-        // this.notesToDisplay();
-        console.log('title',title);
-        console.log('text',text); 
     }
 
     onNoteEdit = (id, title, inputTitle, txt, inputNote) => {
