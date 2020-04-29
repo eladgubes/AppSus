@@ -1,5 +1,4 @@
-
-
+const {Link} = ReactRouterDOM
 export default function MailPrev(props) {
 
     return (
@@ -13,6 +12,7 @@ export default function MailPrev(props) {
             <button onClick={() => props.onReplyMail('froward', props.mailContact)}>froward</button>
             <button onClick={() => props.onReplyMail('answer', props.mailContact)}>answer</button>
             <button onClick={() => props.onSaveAsNote(props.mail)}>save as note</button>
+            <Link to={`/missKeep?title=${props.mail.subject}&text=${props.mail.body}`}>Create Note</Link>
         </td>
     )
 
