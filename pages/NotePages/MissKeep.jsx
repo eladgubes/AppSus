@@ -63,6 +63,10 @@ export default class MissKeep extends React.Component {
             noteService.createTodo('todos', this.state.isPinned, this.state.field.inputNote, this.state.field.inputTitle, this.state.color)
             this.notesToDisplay()
         })
+        else if (this.state.type === 'video') this.setState({ type: 'video',field }, () => {
+            noteService.createVideo('video', this.state.isPinned, this.state.field.inputNote, this.state.field.inputTitle, this.state.color)
+            this.notesToDisplay()
+        })
         this.notesToDisplay();
     }
 

@@ -47,7 +47,7 @@ var gNotes = [
         type: "video",
         isPinned: false,
         content: {
-            url: " ",
+            videoUrl: "https://www.youtube.com/watch?v=CICIOJqEb5c",
             title: "Me playing Mi"
         },
         style: {
@@ -111,19 +111,21 @@ function createImg(type, isPinned, url, title, backgroundColor) {
     gNotes.push(note);
 }
 
-function createVideo(type, isPinned, url, backgroundColor) {
+function createVideo(type, isPinned, url, title, backgroundColor) {
+
     let note = {
         id: gId++,
         type,
         isPinned,
         content: {
-            url,
+            videoUrl :url,
             title
         },
         style: {
 
         }
     };
+    console.log('url',url.src);
     (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
