@@ -23,7 +23,9 @@ export class App extends React.Component {
                         <Route exact component={About} path="/about" />
                         <Route exact component={Gallery} path="/gallery" />
                         <Route exact component={MissKeep} path="/missKeep" />
+                        <Route exact component={MissKeep} path="/missKeep/:title/:text" />
                         <Route exact component={Mail} path="/mail" />
+                        <Route exact component={Mail} path="/mail/:title/:text" />
                         <Route exact component={BookDetails} path="/gallery/:bookId" />
                     </Switch>
                 </main>

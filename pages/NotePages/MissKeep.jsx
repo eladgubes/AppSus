@@ -6,6 +6,8 @@ import NoteFilter from "../../cmps/Note/NoteFilter.jsx"
 export default class MissKeep extends React.Component {
 
     state = {
+        isMailToNote: false, 
+        mailUrl: '',
         notes: null,
         type: null,
         isPinned: false,
@@ -17,6 +19,22 @@ export default class MissKeep extends React.Component {
 
     componentDidMount() {
         this.notesToDisplay();
+    }
+    
+    componentDidUpdate(prevProps){
+        this.createNewNoteFromMail(prevProps)
+    }
+
+    createNewNoteFromMail = (prevProps) => {
+        if(this.state.isMailToNote) return
+        if(prevProps.location.search === '' || !prevProps.location.search || prevProps.location.search === ' ')return
+        this.setState({isMailToNote: true})
+        const t = prevProps.location.search.split('=')
+        console.log('i',t);
+        let title = t[1].split('&')
+        const text = t[2]
+        title = title[0]
+        noteService.createTxt('text',true,text,title)
     }
 
     onNoteEdit = (id, title, inputTitle, txt, inputNote) => {
