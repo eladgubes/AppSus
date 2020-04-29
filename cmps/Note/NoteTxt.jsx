@@ -55,7 +55,8 @@ export default class NoteTxt extends React.Component {
                     <input type="text" placeholder="Note" onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
                     <button onClick={this.onCloseInput}>Close</button>
                 </div>
-                <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
+                <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onRemoveNote={this.props.onRemoveNote}
+                onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
                 <button onClick={this.onOpenInput}>Edit</button>
                 <Link to={`/mail?title=${this.state.filed.inputTitle}&text=${this.state.filed.inputNote}`}>Send as mail</Link>
             </div>

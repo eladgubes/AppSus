@@ -128,14 +128,14 @@ function createVideo(type, isPinned, url, backgroundColor) {
     gNotes.push(note);
 }
 
-function createTodo(type, isPinned, title, todos, backgroundColor) {
+function createTodo(type, isPinned, title, txt, backgroundColor) {
     let note = {
         id: gId++,
         type,
         isPinned,
         content: {
             title,
-            todos
+            todos:[{txt, isComplete: false, doneAt: Date.now()}]
         },
         style: {
 
