@@ -65,7 +65,7 @@ export default class Mail extends React.Component {
 
     onReadMail = (mailId) => {
         mailService.readMail(mailId)
-        this.loadMails
+        this.loadMails()
     }
 
     onToggleNewMail = () => {
@@ -149,8 +149,9 @@ export default class Mail extends React.Component {
                                 <tr>
                                     <th onClick={() => { this.onSortByText('to') }}>to</th>
                                     <th onClick={() => { this.onSortByText('from') }}>from</th>
-                                    <th colSpan="2" onClick={() => { this.onSortByText('subject') }}>contact</th>
+                                    <th colSpan="2" onClick={() => { this.onSortByText('subject') }}>content</th>
                                     <th onClick={() => { this.onSortByNumber('sentAt') }}>time</th>
+                                    <th colSpan="2"></th>
                                 </tr>
                             </thead>
                             <tbody>

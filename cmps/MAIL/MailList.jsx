@@ -56,17 +56,19 @@ export default class MailList extends React.Component {
 
     render() {
         const { mail } = this.props
+        const favoriteImg = (mail.isStarred)?'/assets/icons/full-heart.png' : '/assets/icons/heart.png'
+        const readImg = (mail.isRead)?'/assets/icons/read.png' : '/assets/icons/unread.png'
         const readClass = (mail.isRead && !this.state.isSentBox) ? '' : 'unread'
         return (
             <React.Fragment>
-                <tr onClick={() => { this.expandRow(event), this.props.onReadMail(mail.id) }} className={`${readClass}`} >
+                <tr className="mail-list" onClick={() => { this.expandRow(event), this.props.onReadMail(mail.id) }} className={`${readClass}`} >
                     <td>{mail.to}</td>
                     <td>{mail.from}</td>
                     <td>{mail.subject}</td>
                     <td>{mail.body}</td>
                     <td>{this.state.dateDescription}</td>
-                    {!this.state.isSentBox && <td><button onClick={(event) => this.props.onUnReadToggle(mail.id, event)}>read/unread</button></td>}
-                    <td><button onClick={(event) => this.props.onStarToggle(mail.id, event)}>star</button></td>
+                    {!this.state.isSentBox && <td><a onClick={(event) => this.props.onUnReadToggle(mail.id, event)}><img src={readImg}/></a></td>}
+                    <td><a  onClick={(event) => this.props.onStarToggle(mail.id, event)}><img src={favoriteImg}/></a></td>
                 </tr>
                 <tr hidden={!this.state.isExpanded}>
                     <MailPrev mail={mail} onRemoveMail={this.props.onRemoveMail} mailContact={this.state.mailContact}

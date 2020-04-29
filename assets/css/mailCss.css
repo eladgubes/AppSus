@@ -10,23 +10,30 @@
 }
 .mail-filter{
     margin-bottom: 15px;
+    margin: auto;
     width: 60%;
 }
 .mail-filter input,.mail-filter select{
     font-size: 20px;
 }
 
-.mail-search{
-    width: 100%;
+.mail-search form{
+    margin: auto;
 }
 
 .mails-table{
     border-collapse: collapse;
     width: 100%;
+    text-align: center;
 }
+.mails-table img{
+    width: 30px;
+}
+
 .mails-table tr{
     border-bottom: black 1px solid;
     width: 100%;
+    height: 30px;
 }
 .mails-table tr:hover{
     background-color: yellowgreen;
@@ -36,7 +43,14 @@
 
 .mails-table th{
     cursor: pointer;
+    height: 30px;
+    font-size: 1.2em;
 }
+
+.mails-table th{
+    background-color: white;
+}
+
 
 .mail-container{
     margin: auto;
@@ -46,10 +60,21 @@
     
 }
 
+.mail-box{
+    width: 100%;
+}
+
 .mail-control{
     width: 20%;
     flex-direction: column;
     border-right: black 1px solid;
+    font-size: 1.3em;
+}
+.mail-control img{
+    width: 50px;
+}
+.mail-control a{
+    text-align: center;
 }
 
 .mail-nav li{
@@ -70,6 +95,13 @@
     flex-direction: column;
     padding: 2%;
     border: 1px black solid;
+}
+.new-mail img{
+    width: 30px;
+}
+.new-mail a{
+    width: 30px;
+    cursor: pointer;
 }
 
 .new-mail input{
