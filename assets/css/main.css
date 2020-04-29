@@ -85,7 +85,7 @@ nav li a{
 /* main */
 
 main{
-    height: 75vh;    
+    min-height: 75vh;
 }
 
 /* home */

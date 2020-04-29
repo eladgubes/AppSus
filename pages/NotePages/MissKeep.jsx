@@ -135,7 +135,7 @@ export default class MissKeep extends React.Component {
                     })}
                 </div>
                 <br />
-                <div className="unPinned grid">
+                <div className="unPinned flex">
                     {notes && notes.map((note) => {
                         if (!note.isPinned) return <NotePrev key={note.id} note={note} onNoteEdit={this.onNoteEdit}
                             setNoteColor={this.setNoteColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}
