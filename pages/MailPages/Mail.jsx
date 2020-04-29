@@ -1,8 +1,8 @@
-import MailList from "../cmps/Mail/MailList.jsx"
-import MailFilter from "../cmps/Mail/MailFilter.jsx"
-import NewMail from "../cmps/Mail/NewMail.jsx"
-import MailControl from "../cmps/Mail/MailControl.jsx"
-import mailService from "../services/mailService.js"
+import MailList from "../../cmps/Mail/MailList.jsx"
+import MailFilter from "../../cmps/Mail/MailFilter.jsx"
+import NewMail from "../../cmps/Mail/NewMail.jsx"
+import MailControl from "../../cmps/Mail/MailControl.jsx"
+import mailService from "../../services/mailService.js"
 
 
 
@@ -24,7 +24,6 @@ export default class Mail extends React.Component {
 
     componentDidMount = () => {
         this.loadMails()
-
     }
 
     componentDidUpdate(prevProps){
@@ -74,6 +73,8 @@ export default class Mail extends React.Component {
         this.setState({ isNewMail })
     }
     onSendMail = (mailContact) => {
+        console.log(mailContact);
+        
         this.onToggleNewMail()
         mailService.sendMail(mailContact)
         this.loadMails()
@@ -98,6 +99,8 @@ export default class Mail extends React.Component {
         const from = (key === 'answer') ? mailContact.from : ''
         const subject = (key === 'answer') ? 'Re:' + mailContact.subject : 'Fw:' + mailContact.subject
         const body = mailContact.body
+        console.log(body);
+        
         this.setState({ mailContact: { from, subject, body } })
         this.setState({ isNewMail: true })
     }
@@ -113,10 +116,6 @@ export default class Mail extends React.Component {
 
     onChangeMailBox = (mailBox) => {
         this.setState({ mailBox }, () => this.loadMails())
-        // this.setState({ mailBox })
-        // this.loadMails()
-        console.log(this.state.mailBox);
-
     }
 
     onStarToggle = (mailId, ev) => {
