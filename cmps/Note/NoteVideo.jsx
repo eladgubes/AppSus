@@ -11,7 +11,8 @@ export default class NoteVideo extends React.Component {
     componentDidMount() {
         const id = this.props.note.id
         const color = this.props.note.style.backgroundColor;
-        const url = this.props.note.content.url;
+        const url = this.props.note.content.videoUrl;
+        console.log('url', url);
         const input = this.props.note.content.title;
         this.setState({ id, color, url, input })
     }
@@ -20,10 +21,14 @@ export default class NoteVideo extends React.Component {
         return (
             <div className="note-txt flex center-center" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
                 <h1>{this.props.note.content.title}</h1>
-                <img src={this.props.note.content.url} alt=""/>
+                <div className="video">
+                    <iframe width="560" height="315" src={`${this.props.note.content.videoUrl}`}
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+                </div>
                 <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onRemoveNote={this.props.onRemoveNote}
-                onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
-            </div>
+                    onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
+            </div >
         )
     }
 }
