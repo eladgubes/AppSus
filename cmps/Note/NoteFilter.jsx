@@ -16,7 +16,7 @@ export default class NoteFilter extends React.Component {
 
     render() {
         return (
-            <div className="mail-search flex">
+            <div className="note-search flex">
                 <form action="">
                     <button onClick={() => { this.onSubmit(event)}}>Submit</button>
                     <input type="text" onChange={this.handleInput} value={this.state.noteSearchWord} name="noteSearchWord" />

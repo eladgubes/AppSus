@@ -103,12 +103,11 @@ export default class MissKeep extends React.Component {
     render() {
         const notes = this.state.notes
         return (
-            <section className="miss-keep">
+            <section className="miss-keep flex">
                 <NoteFilter onSetFilter={this.onSetFilter} />
                 <AddNote onSetColor={this.onSetColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}
                     onSetNote={this.onSetNote} onSetPin={this.onSetPin} />
-                <div className="pinned grid">
-                    {/* check if the note is pinned in the map */}
+                <div className="pinned flex">
                     {notes && notes.map((note) => {
                         if (note.isPinned) return <NotePrev key={note.id} note={note} onNoteEdit={this.onNoteEdit}
                             setNoteColor={this.setNoteColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}
@@ -119,7 +118,6 @@ export default class MissKeep extends React.Component {
                 </div>
                 <br />
                 <div className="unPinned grid">
-                    {/* check if the note is not pinned in the map */}
                     {notes && notes.map((note) => {
                         if (!note.isPinned) return <NotePrev key={note.id} note={note} onNoteEdit={this.onNoteEdit}
                             setNoteColor={this.setNoteColor} onSetNoteType={this.onSetNoteType} onSetTodo={this.onSetTodo}

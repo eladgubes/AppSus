@@ -1,27 +1,36 @@
-/* miss-keep */
-
-.miss-keep .pinned{
-    height: 20vh;
+.miss-keep{
+    flex-direction: column;
 }
 
-.miss-keep .unPinned{
-    height: 20vh;
+.miss-keep .note-search{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-/* .miss-keep br{
-    
-} */
+.miss-keep .note-search >*>*{
+    height: 25px
+}
 
-.miss-keep .note-prev{
-    margin: auto;
-    height: 100%;
-    width: 80%;
-    background-color: rgb(0, 128, 0);
-    border-radius: 15px;
+.miss-keep .note-search >* :not(:first-child){
+    min-width: 14rem;
+}
+
+.miss-keep .note-inputs{
+    align-self: center;
+    flex-direction: column;
+}
+
+.note-inputs .note-tools{
+    align-self: center;
 }
 
 .note-txt{
+    height: 20vh;
     flex-direction: column;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 30px;
+    width: 20rem;
 }
 
 .note-txt img {
@@ -34,4 +43,8 @@
 
 .uncompleted-todo{
     text-decoration: none;
+}
+
+.hide{
+    display: none;
 }

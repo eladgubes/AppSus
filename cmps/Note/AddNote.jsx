@@ -25,7 +25,7 @@ export default class NoteSet extends React.Component {
 
     render() {
         return (
-            <div className="note-inputs">
+            <div className="note-inputs flex">
                 <form action="">
                     <input type="text" placeholder="Title" onChange={this.handleInput} value={this.state.filed.inputTitle} name="inputTitle" />
                     <input type="text" placeholder={this.state.placeHolder} onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
