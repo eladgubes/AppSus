@@ -24,7 +24,6 @@ export default class Mail extends React.Component {
 
     componentDidMount = () => {
         this.loadMails()
-
     }
 
     componentDidUpdate(prevProps){
