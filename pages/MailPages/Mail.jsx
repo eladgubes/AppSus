@@ -1,7 +1,7 @@
-import MailList from "../../cmps/Mail/MailList.jsx"
-import MailFilter from "../../cmps/Mail/MailFilter.jsx"
-import NewMail from "../../cmps/Mail/NewMail.jsx"
-import MailControl from "../../cmps/Mail/MailControl.jsx"
+import MailList from "../../cmps/MAIL/MailList.jsx"
+import MailFilter from "../../cmps/MAIL/MailFilter.jsx"
+import NewMail from "../../cmps/MAIL/NewMail.jsx"
+import MailControl from "../../cmps/MAIL/MailControl.jsx"
 import mailService from "../../services/mailService.js"
 
 
