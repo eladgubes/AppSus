@@ -60,7 +60,6 @@ var gNotes = [
         isPinned: false,
         content: {
             title: 'i am todo title',
-            // label: "How was it:",
             todos: [
                 { txt: "Do that", isComplete: false, doneAt: 187112541 },
                 { txt: "Do this", isComplete: false, doneAt: 187111111 }

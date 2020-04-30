@@ -51,7 +51,7 @@ export default class NoteTxt extends React.Component {
             <div className="note-txt" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
                 <div className="note-content">
                     <h1>{this.props.note.content.title}</h1>
-                    <p>{this.props.note.content.txt}</p>
+                    <p>{this.props.note.content.text}</p>
                 </div>
                 <div className={`note-edit ${this.state.isEditShow}`}>
                     <input type="text" placeholder="Title" onChange={this.handleInput} value={this.state.filed.inputTitle} name="inputTitle" />
