@@ -21,8 +21,8 @@
 html{
     font-size: 14px;
     font-family: cursive;
+    color: rgb(255, 102, 0);
     color: #383838;
-    color: rgb(255, 102, 0)
 }
 
 h1,h2,h3{
@@ -31,7 +31,7 @@ h1,h2,h3{
 
 a{
     text-decoration: none;
-    color: rgb(255, 102, 0);
+    color: #383838;
     cursor: pointer;
 }
 
@@ -53,9 +53,14 @@ button:hover{
 /* header */
 
 header{ 
-    height: 118px;
+    height: 60px;
     box-shadow: 2px 0px 4px 0px black;
-    
+}
+
+header .menu >*{
+    width: 35px;
+    margin-right: 15px;
+
 }
 
 header h1{
@@ -63,13 +68,12 @@ header h1{
 }
 
 nav ul{
-    width: 60%;
-    height: 15vh;
+    display: flex;
+    width: 100%;
     margin-right: 10px;
 }
 
 nav ul li{
-    height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,6 +91,7 @@ nav li a{
 
 main{
     min-height: 75vh;
+    padding-top: 70px;
 }
 
 /* home */
@@ -101,15 +106,16 @@ main{
 }
 
 .home h1{
-    font-size: 7rem;
+    font-size: 5rem;
 }
 
 .home h3{
-    font-size: 3.5rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
 .home p{
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin-bottom: 15px;
 }
 
@@ -117,6 +123,7 @@ main{
     font-size: 2rem;
     width: 220px;
     height: 50px;
+    margin-bottom: 2rem;
 }
 
 /* about */
@@ -178,10 +185,19 @@ main{
     width: 14rem;
 }
 
+.book-prev h1{
+    font-family: sans-serif;
+    color: rgb(204, 186, 27);
+}
+
+.book-prev p{
+    color: #ffffff;
+}
+
 /* footer */
 
 footer{
-    height: 10vh;
+    height: 60px;
     background-color: #F5F5F5;
 }
 
@@ -261,4 +277,28 @@ footer h1{
     color: #7cc897;
 }
 
+@media (max-width: 740px){
 
+    header .menu{
+        display: block;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -5;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #fff;
+        border-left: 1px solid #e8e8e8;
+        min-width: 200px;
+        transform: translateX(100%);
+
+        transition: transform .3s;
+    }
+
+    .menu-open .main-nav {   
+        transform: translateX(0);
+    }
+
+}

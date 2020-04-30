@@ -48,7 +48,7 @@ var gNotes = [
         isPinned: false,
         content: {
             videoUrl: "https://www.youtube.com/watch?v=CICIOJqEb5c",
-            title: "Me playing Mi"
+            title: "My Vid"
         },
         style: {
             backgroundColor: '#008000'

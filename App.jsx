@@ -14,7 +14,7 @@ export class App extends React.Component {
         return (
             <Router>
                 <header className="flex space-between dark-prime-bgc center-center">
-                        <h1>Logo</h1>
+                        <h1>AppSus</h1>
                         <NavLink />
                 </header>
                 <main className="dark-sec-bgc">
