@@ -38,11 +38,11 @@ export default class NoteSet extends React.Component {
                     <button onClick={() => this.handleState('todos', { placeHolder: 'Todo' })}>todos</button>
                     <button onClick={() => this.handleState('video', { placeHolder: 'Video Url' })}>Video</button>
                     <select onChange={() => this.props.onSetColor(event)} name="" id="">
-                        <option style={{ backgroundColor: '#0000ff' }} value="#0000ff"></option>
-                        <option style={{ backgroundColor: '#ff0000' }} value="#ff0000"></option>
-                        <option style={{ backgroundColor: '#008000' }} value="#008000"></option>
-                        <option style={{ backgroundColor: '#ffff00' }} value="#ffff00"></option>
-                        <option style={{ backgroundColor: '#ffa500' }} value="#ffa500"></option>
+                    <option style={{backgroundColor: '#ffa1c5'}} value="#ffa1c5"></option>
+                    <option style={{backgroundColor: '#a1a4ff'}} value="#a1a4ff"></option>
+                    <option style={{backgroundColor: '#76f57c'}} value="#76f57c"></option>
+                    <option style={{backgroundColor: '#eaf576'}} value="#eaf576"></option>
+                    <option style={{backgroundColor: '#f57e76'}} value="#f57e76"></option>
                     </select>
                 </div>
             </div>
