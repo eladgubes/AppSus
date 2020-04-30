@@ -31,8 +31,8 @@ export default class NewMail extends React.Component {
                 <div className="new-mail-head flex space-between">
                     <h2>Enter Your mail</h2>
                     <div className="new-mail-btn flex space-between">
-                        <a onClick={() => { this.onSendMailForm(event) }}><img src="/assets/icons/send.png" alt=""/></a>
-                        <a onClick={this.props.onToggleNewMail}><img src="/assets/icons/close.png" alt=""/></a>
+                        <a onClick={() => { this.onSendMailForm(event) }}><img src="assets/icons/send.png" alt=""/></a>
+                        <a onClick={this.props.onToggleNewMail}><img src="assets/icons/close.png" alt=""/></a>
                     </div>
                 </div>
                 <form action="">

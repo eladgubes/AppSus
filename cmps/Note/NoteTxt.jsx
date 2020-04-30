@@ -1,9 +1,10 @@
-const {Link} = ReactRouterDOM
+const { Link } = ReactRouterDOM
 import NoteTools from './NoteTools.jsx'
 export default class NoteTxt extends React.Component {
 
     state = {
-        isShow: 'hide',
+        isEditShow: 'hide',
+        isButtonShow: '',
         id: null,
         color: null,
         filed: {
@@ -17,9 +18,9 @@ export default class NoteTxt extends React.Component {
         const id = this.props.note.id
         const inputTitle = this.props.note.content.title
         const inputNote = this.props.note.content.txt
-        const filed = {inputTitle , inputNote}
-        console.log(inputNote,inputTitle);
-        
+        const filed = { inputTitle, inputNote }
+        console.log(inputNote, inputTitle);
+
         this.setState({ color, id, filed })
     }
 
@@ -36,28 +37,30 @@ export default class NoteTxt extends React.Component {
     }
 
     onOpenInput = () => {
-        if (this.state.isShow === 'hide') this.setState({ isShow: '' })
+        if (this.state.isEditShow === 'hide') this.setState({ isEditShow: '' })
+        this.setState({ isButtonShow: 'hide' })
     }
-
+    
     onCloseInput = () => {
-        this.setState({ isShow: 'hide' })
+        if (this.state.isButtonShow === 'hide') this.setState({ isButtonShow: '' })
+        this.setState({ isEditShow: 'hide' })
     }
 
     render() {
         return (
-            <div className="note-txt flex center-center" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
-                <div>
+            <div className="note-txt" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
+                <div className="note-content">
                     <h1>{this.props.note.content.title}</h1>
                     <p>{this.props.note.content.txt}</p>
                 </div>
-                <div className={`note-edit ${this.state.isShow}`}>
+                <div className={`note-edit ${this.state.isEditShow}`}>
                     <input type="text" placeholder="Title" onChange={this.handleInput} value={this.state.filed.inputTitle} name="inputTitle" />
                     <input type="text" placeholder="Note" onChange={this.handleInput} value={this.state.filed.inputNote} name="inputNote" />
-                    <button onClick={this.onCloseInput}>Close</button>
+                    <button className="note-close-edit-button" onClick={this.onCloseInput}>Close</button>
                 </div>
+                <button className={`note-edit-button ${this.state.isButtonShow}`} onClick={this.onOpenInput}>Edit</button>
                 <NoteTools setNoteColor={this.props.setNoteColor} note={this.props.note} onRemoveNote={this.props.onRemoveNote}
-                onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
-                <button onClick={this.onOpenInput}>Edit</button>
+                    onEditPin={this.props.onEditPin} onSetNoteType={this.props.onSetNoteType} />
                 <Link to={`/mail?title=${this.state.filed.inputTitle}&text=${this.state.filed.inputNote}`}>Send as mail</Link>
             </div>
         )

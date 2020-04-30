@@ -19,7 +19,7 @@ export default class NoteVideo extends React.Component {
 
     render() {
         return (
-            <div className="note-txt flex center-center" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
+            <div className="note-txt" style={{ backgroundColor: this.props.note.style.backgroundColor }}>
                 <h1>{this.props.note.content.title}</h1>
                 <div className="video">
                     <iframe width="560" height="315" src={`${this.props.note.content.videoUrl}`}

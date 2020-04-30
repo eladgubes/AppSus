@@ -5,16 +5,13 @@
 .mail-section{
     width: 100%;
     flex-direction: column;
-    height: 100%;
+    height: 60vh;
     margin: auto;
 }
 .mail-filter{
     margin-bottom: 15px;
     margin: auto;
     width: 60%;
-}
-.mail-filter input,.mail-filter select{
-    font-size: 20px;
 }
 
 .mail-search form{
@@ -130,4 +127,28 @@
 }
 .new-mail textarea:focus, input:focus{
     outline: none;
+}
+
+@media (max-width: 740px){
+    .mail-container{
+        flex-direction: column;  
+    }
+    .mail-control{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        border-right: none;
+    }
+    .mail-nav{
+        flex-direction: row;
+        display: flex;
+        width: 50%;
+        justify-content: space-around;
+    }
+    .mail-filter{
+        width: 100%;
+    }
+    .mail-search{
+        width: 100%;
+    }
 }

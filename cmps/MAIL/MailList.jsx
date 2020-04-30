@@ -56,8 +56,8 @@ export default class MailList extends React.Component {
 
     render() {
         const { mail } = this.props
-        const favoriteImg = (mail.isStarred)?'/assets/icons/full-heart.png' : '/assets/icons/heart.png'
-        const readImg = (mail.isRead)?'/assets/icons/read.png' : '/assets/icons/unread.png'
+        const favoriteImg = (mail.isStarred)?'assets/icons/full-heart.png' : 'assets/icons/heart.png'
+        const readImg = (mail.isRead)?'assets/icons/read.png' : 'assets/icons/unread.png'
         const readClass = (mail.isRead && !this.state.isSentBox) ? '' : 'unread'
         return (
             <React.Fragment>

@@ -3,21 +3,77 @@
 }
 
 .miss-keep .note-search{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: -40px;
+    margin-bottom: 80px;
+    margin-left: 10px;
+    height: 31px;
+    background-color: white;
+    width: fit-content;
+    border: solid 1.5px #E6D11D;
+    border-radius: 10px;
 }
 
 .miss-keep .note-search >*>*{
-    height: 25px
+    height: 100%;
+    border: none;
 }
 
 .miss-keep .note-search >* :not(:first-child){
-    min-width: 14rem;
+    min-width: 20rem;
+    border-radius: 0 10px 10px 0;
+    font-size: 1.2rem;
+    padding-left: 10px;
+}
+
+.miss-keep .note-search >* :first-child{
+    border-radius: 5px 0 0 5px;
+    min-width: 10rem;
+    color: #383838;
+    background-color: #E6D11D;
+}
+
+.miss-keep .note-search >* :first-child:hover{
+    background-color: rgb(255, 238, 81);
 }
 
 .miss-keep .note-inputs{
     align-self: center;
     flex-direction: column;
+    background-color: #E6D11D;
+    padding: 20px;
+    min-width: 30vw;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+.miss-keep .note-inputs form{
+    display: flex;
+    flex-direction: column;
+}
+
+.note-inputs form input{
+    min-width: 20rem;
+    height: 31px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    border: none;
+    padding-left: 15px;
+    font-size: 1.2rem;
+}
+
+.note-inputs form button{
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.note-inputs form button:hover{
+    background-color: rgb(223, 213, 126);
+    border: solid 1px rgb(202, 182, 0);
 }
 
 .note-inputs .note-tools{
@@ -25,12 +81,57 @@
 }
 
 .note-txt{
-    height: 20vh;
+    min-height: 20vh;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     border-radius: 15px;
     margin: 5px;
-    padding: 30px;
-    width: 20rem;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.note-txt .note-content{
+    margin-bottom: 15px;
+}
+
+.note-txt .note-edit-button{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.note-txt .note-close-edit-button ,.note-txt .add-todo-button{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.note-txt .note-edit input{
+    width: 80%;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+    border: none;
+}
+
+.note-txt h1{
+    color: rgb(80, 80, 80);
+}
+
+.note-txt p, .note-txt a{
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 2px black;
 }
 
 .note-txt img {

@@ -27,7 +27,7 @@ var gNotes = [
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "#008000"
+            backgroundColor: "#ffa1c5"
         }
     },
     {
@@ -39,7 +39,7 @@ var gNotes = [
             title: "Me playing Mi"
         },
         style: {
-            backgroundColor: '#008000'
+            backgroundColor: '#ffa1c5'
         }
     },
     {
@@ -51,7 +51,7 @@ var gNotes = [
             title: "My Vid"
         },
         style: {
-            backgroundColor: '#008000'
+            backgroundColor: '#ffa1c5'
         }
     },
     {
@@ -67,7 +67,7 @@ var gNotes = [
             ]
         },
         style: {
-            backgroundColor: "#008000"
+            backgroundColor: "#ffa1c5"
         }
     }
 ];
@@ -90,7 +90,7 @@ function createTxt(type, isPinned, text, title, backgroundColor) {
 
         }
     };
-    (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
+    (!backgroundColor) ? note.style.backgroundColor = '#ffa1c5' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
 
@@ -107,7 +107,7 @@ function createImg(type, isPinned, url, title, backgroundColor) {
 
         }
     };
-    (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
+    (!backgroundColor) ? note.style.backgroundColor = '#ffa1c5' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
 
@@ -126,7 +126,7 @@ function createVideo(type, isPinned, url, title, backgroundColor) {
         }
     };
     console.log('url',url.src);
-    (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
+    (!backgroundColor) ? note.style.backgroundColor = '#ffa1c5' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
 
@@ -143,7 +143,7 @@ function createTodo(type, isPinned, title, txt, backgroundColor) {
 
         }
     };
-    (!backgroundColor) ? note.style.backgroundColor = '#008000' : note.style.backgroundColor = backgroundColor
+    (!backgroundColor) ? note.style.backgroundColor = '#ffa1c5' : note.style.backgroundColor = backgroundColor
     gNotes.push(note);
 }
 
